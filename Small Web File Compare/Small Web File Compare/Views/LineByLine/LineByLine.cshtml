@@ -1,0 +1,50 @@
+﻿<p class="h1">Line By Line Compare.</p>
+
+<form method="post" enctype="multipart/form-data" asp-controller="LineByLine" asp-action="LineByLine">
+    <table>
+        <tr>
+            <td><label for="myfile">File 1:</label></td>
+            <td><input type="file" id="idFile0" runat="server" name="File0"></td>
+        </tr>
+        <tr>
+            <td><label for="myfile">File 2:</label></td>
+            <td><input type="file" id="idFile1" runat="server" name="File1"></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td><input type="submit" value="Submit and Compare" /></td>
+        </tr>
+    </table>
+</form>
+
+<a>@ViewBag.Info</a>
+
+@if (ViewBag.length != 0)
+{
+    <table id="showTable" class="table table-sm table-bordered table-dark">
+        <tr>
+            <th scope="col">List 1</th>
+            <th scope="col">List 2</th>
+        </tr>
+        <tbody>
+            @for (int i = 0; i < ViewBag.length; i++)
+            {
+                if (ViewBag.text0[i] != ViewBag.text1[i])
+                {
+                    <tr>
+                        <th class="bg-danger">@ViewBag.text0[i]</th>
+                        <th class="bg-danger">@ViewBag.text1[i]</th>
+                    </tr>
+                }
+                else
+                {
+                    <tr>
+                        <th>@ViewBag.text0[i]</th>
+                        <th>@ViewBag.text1[i]</th>
+                    </tr>
+                }
+
+            }
+        </tbody>
+    </table>
+}
